@@ -8,7 +8,7 @@
 [build.environment]
   NODE_VERSION = "18"
   NPM_FLAGS = "--no-frozen-lockfile"
-  NETLIFY_EXPERIMENTAL_EDGE_FUNCTIONS = "false"  # ← This should already disable them
+  NETLIFY_EXPERIMENTAL_EDGE_FUNCTIONS = "false" 
 
 [functions]
   directory = "netlify/functions"
