@@ -1,14 +1,9 @@
-[build]
-  functions = "netlify/functions"
-
-
-
-
-  # Netlify Configuration for React Notes App with Vite
+# Netlify Configuration for React Notes App with Vite
 
 [build]
   publish = "dist"
   command = "npm run build"
+  functions = "netlify/functions"
   
 [build.environment]
   # Use Node.js 18 for better compatibility
