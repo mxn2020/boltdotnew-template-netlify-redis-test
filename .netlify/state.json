@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Cologne",
+			"country": {
+				"code": "DE",
+				"name": "Germany"
+			},
+			"subdivision": {
+				"code": "NW",
+				"name": "North Rhine-Westphalia"
+			},
+			"timezone": "Europe/Berlin",
+			"latitude": 50.8796,
+			"longitude": 7.0821,
+			"postalCode": "51145"
+		},
+		"timestamp": 1748888896631
+	}
+}
