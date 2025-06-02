@@ -6,14 +6,9 @@
   functions = "netlify/functions"
   
 [build.environment]
-  # Use Node.js 18 for better compatibility
   NODE_VERSION = "18"
-  # Ensure npm doesn't use frozen lockfile in CI
   NPM_FLAGS = "--no-frozen-lockfile"
-  # Disable Edge Functions runtime
-  NETLIFY_EXPERIMENTAL_EDGE_FUNCTIONS = "false"
-  # Force traditional functions
-  FUNCTIONS_RUNTIME = "nodejs18.x"
+  NETLIFY_EXPERIMENTAL_EDGE_FUNCTIONS = "false"  # ← This should already disable them
 
 [functions]
   directory = "netlify/functions"
