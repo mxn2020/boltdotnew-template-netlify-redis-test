@@ -24,7 +24,7 @@
   included_files = ["netlify/functions/**"]
 
 [dev]
-  # Let Netlify auto-detect the framework and proxy properly
+  command = "vite"  # ← Add this line
   autoLaunch = false
   targetPort = 5173
   port = 8888
