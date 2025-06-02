@@ -1,7 +1,78 @@
 [build]
   functions = "netlify/functions"
 
+
+
+
+  # Netlify Configuration for React Notes App with Vite
+
+[build]
+  publish = "dist"
+  command = "npm run build"
+  
+[build.environment]
+  # Use Node.js 18 for better compatibility
+  NODE_VERSION = "18"
+  # Ensure npm doesn't use frozen lockfile in CI
+  NPM_FLAGS = "--no-frozen-lockfile"
+  # Disable Edge Functions runtime
+  NETLIFY_EXPERIMENTAL_EDGE_FUNCTIONS = "false"
+  # Force traditional functions
+  FUNCTIONS_RUNTIME = "nodejs18.x"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  # Force fresh deployment
+  external_node_modules = ["bcryptjs"]
+  # Explicitly set runtime to nodejs
+  included_files = ["netlify/functions/**"]
+
+[dev]
+  # Let Netlify auto-detect the framework and proxy properly
+  autoLaunch = false
+  targetPort = 5173
+  port = 8888
+  
+# API routes to Netlify functions
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/auth/:splat"
   status = 200 
+
+# SPA fallback for React Router - must be last
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+  
+[context.development.environment]
+  NODE_ENV = "development"
+
+[context.production.environment]
+  NODE_ENV = "production"
+
+[context.deploy-preview.environment]
+  NODE_ENV = "development"
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Don't cache the main HTML file
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
